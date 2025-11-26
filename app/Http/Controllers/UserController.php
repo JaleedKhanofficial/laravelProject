@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return response()->json(User::whereId($id)->first());
     }
 
     /**
@@ -57,7 +57,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::whereId($id)->first();
+        $user->update([
+            'name' => $request->name,
+            'email' =>$request->email,
+        ]);
+        return response()->json("Updated Successfully");
     }
 
     /**
