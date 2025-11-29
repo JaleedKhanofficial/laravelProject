@@ -70,6 +70,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::whereId($id)->first()->delete();
+        return response()->json("Deleted Successfully");
     }
 }
